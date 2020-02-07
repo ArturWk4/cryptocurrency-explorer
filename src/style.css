@@ -1,0 +1,44 @@
+.test-pagination,
+.test-main {
+  margin-top: 10px;
+}
+.active.page-item a {
+  color: white;
+}
+.pagination .page-item a.page-link {
+  color: #007bff;
+}
+.pagination .active.page-item a.page-link {
+  color: white;
+  background-color: #007bff;
+}
+.list-group-item {
+  height: 75px;
+}
+.list-group-item img {
+  width: 50px;
+}
+.align-right {
+  width: 15%;
+  float: right;
+  text-align: right;
+}
+.align-right small {
+  margin-top: 3px;
+}
+.crypto-details {
+  display: inline-block;
+  width: 25%;
+}
+.crypto-details-header {
+  color: darkgray;
+  text-align: left;
+  font-weight: bold;
+}
+p.card-text {
+  text-align: justify;
+}
+
+.chart {
+  margin: 40px auto;
+}
