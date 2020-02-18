@@ -1,6 +1,7 @@
 import React from "react";
 import { MDBPageItem, MDBPagination } from "mdbreact";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import { getPaginationNumbers } from "../../utils/pagination";
 
 const Pagination = props => {
@@ -35,6 +36,11 @@ const Pagination = props => {
       )}
     </MDBPagination>
   );
+};
+
+Pagination.propTypes = {
+  num: PropTypes.number.isRequired,
+  paginationLength: PropTypes.number.isRequired
 };
 
 export default Pagination;

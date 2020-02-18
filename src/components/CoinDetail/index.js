@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { AlignRight, Small } from "./style.module.css";
 const CoinDetail = ({ prefix, postfix, data }) =>
   data ? (
@@ -9,4 +10,9 @@ const CoinDetail = ({ prefix, postfix, data }) =>
     </span>
   ) : null;
 
+CoinDetail.propTypes = {
+  prefix: PropTypes.string,
+  postfix: PropTypes.string.isRequired,
+  data: PropTypes.number.isRequired
+};
 export default CoinDetail;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {
   CryptoDetails,
   CryptoDetailsHeader
@@ -22,5 +23,15 @@ const CoinCardDetail = ({ header, data, symbols }) => (
     )}
   </div>
 );
+
+CoinCardDetail.propTypes = {
+  header: PropTypes.string.isRequired,
+  data: PropTypes.shape({
+    usd: PropTypes.number,
+    eur: PropTypes.number,
+    gbp: PropTypes.number
+  }).isRequired,
+  symbols: PropTypes.arrayOf(PropTypes.string).isRequired
+};
 
 export default CoinCardDetail;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { MDBListGroupItem } from "mdbreact";
-
+import PropTypes from "prop-types";
 import CoinDetail from "../CoinDetail";
 
 const CoinItem = ({ data }) => (
@@ -30,5 +30,21 @@ const CoinItem = ({ data }) => (
     />
   </MDBListGroupItem>
 );
+
+CoinItem.propTypes = {
+  data: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    image: PropTypes.shape({
+      small: PropTypes.string.isRequired
+    }).isRequired,
+    market_data: PropTypes.shape({
+      current_price: PropTypes.shape(),
+      price_change_percentage_24h: PropTypes.number,
+      price_change_percentage_7d: PropTypes.number,
+      price_change_percentage_30d: PropTypes.number
+    })
+  }).isRequired
+};
 
 export default CoinItem;

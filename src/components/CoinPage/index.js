@@ -18,6 +18,7 @@ import {
   CartesianGrid,
   Tooltip
 } from "recharts";
+import PropTypes from "prop-types";
 import Spinner from "../Spinner";
 import { fetchCoinDetails, getMarketChart } from "../../services/coinService";
 import dangerouslyCreateInnerHTML from "../../utils/dangerouslyCreateInnerHTML";
@@ -129,6 +130,14 @@ const CoinPage = ({ match }) => {
   ) : (
     <Spinner />
   );
+};
+
+CoinPage.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      coinId: PropTypes.string.isRequired
+    })
+  }).isRequired
 };
 
 export default withRouter(CoinPage);

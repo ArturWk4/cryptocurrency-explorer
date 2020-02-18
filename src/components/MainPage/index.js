@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { MDBCol, MDBContainer, MDBRow } from "mdbreact";
 import { connect } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 import Pagination from "../Pagination";
 import CoinsList from "../CoinsList";
 import { getPaginationLength } from "../../utils/pagination";
@@ -59,6 +60,26 @@ const MainPage = props => {
       </MDBRow>
     </MDBContainer>
   );
+};
+
+MainPage.propTypes = {
+  listOfCoinsTitle: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      symbol: PropTypes.string,
+      name: PropTypes.string.isRequired
+    })
+  ).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({ num: PropTypes.string.isRequired })
+  }).isRequired,
+  setCoinsListAction: PropTypes.func.isRequired,
+  order: PropTypes.string.isRequired,
+  coinsList: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired
+    })
+  ).isRequired
 };
 
 const mapStateToProps = state => state.coins;

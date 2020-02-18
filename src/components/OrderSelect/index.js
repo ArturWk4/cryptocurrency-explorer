@@ -1,7 +1,7 @@
 import React from "react";
-
-import { GECKO_ORDER } from "../../utils/constants";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { GECKO_ORDER } from "../../utils/constants";
 import { setOrder } from "../../store/coins/actions";
 
 const OrderSelect = ({ selectedValue, setOrderAction }) => (
@@ -19,6 +19,11 @@ const OrderSelect = ({ selectedValue, setOrderAction }) => (
     </select>
   </div>
 );
+
+OrderSelect.propTypes = {
+  selectedValue: PropTypes.string.isRequired,
+  setOrderAction: PropTypes.func.isRequired
+};
 
 const mapStateToProps = ({ coins }) => ({ selectedValue: coins.order });
 

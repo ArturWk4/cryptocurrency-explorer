@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-
+import PropTypes from "prop-types";
 import MainPage from "../MainPage";
 import CoinPage from "../CoinPage";
 import { connect } from "react-redux";
@@ -23,8 +23,10 @@ const App = ({ setListOfCoinsTitleAction }) => {
   );
 };
 
-const mapStateToProps = state => ({});
+App.propTypes = {
+  setListOfCoinsTitleAction: PropTypes.func.isRequired
+};
 
-export default connect(mapStateToProps, {
+export default connect(() => ({}), {
   setListOfCoinsTitleAction: setListOfCoinsTitle
 })(App);
