@@ -26,19 +26,7 @@
 .align-right small {
   margin-top: 3px;
 }
-.crypto-details {
-  display: inline-block;
-  width: 25%;
-}
-.crypto-details-header {
-  color: darkgray;
-  text-align: left;
-  font-weight: bold;
-}
 p.card-text {
   text-align: justify;
 }
 
-.chart {
-  margin: 40px auto;
-}

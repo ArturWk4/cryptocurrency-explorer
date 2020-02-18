@@ -1,20 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { MDBListGroup } from "mdbreact";
-import { connect } from "react-redux";
-
 import CoinItem from "../CoinItem";
-import { setCoinsList } from "../../store/coins/actions";
 import Spinner from "../Spinner";
 
-const CoinsList = ({ data, num, setCoinsList, order }) => {
-  useEffect(() => {
-    setCoinsList(num);
-  }, [num, order]);
-
-  return data && data.length > 0 ? (
-    <MDBListGroup style={{ width: "100%" }}>
-      {data.map(e => (
-        <CoinItem key={e.id} data={e} />
+const CoinsList = ({ coinsList }) => {
+  return coinsList && coinsList.length > 0 ? (
+    <MDBListGroup className="w-100">
+      {coinsList.map(coin => (
+        <CoinItem key={coin.id} data={coin} />
       ))}
     </MDBListGroup>
   ) : (
@@ -22,9 +15,4 @@ const CoinsList = ({ data, num, setCoinsList, order }) => {
   );
 };
 
-const mapStateToProps = ({ coins }) => ({
-  data: coins.coinsList,
-  order: coins.order
-});
-
-export default connect(mapStateToProps, { setCoinsList })(CoinsList);
+export default CoinsList;

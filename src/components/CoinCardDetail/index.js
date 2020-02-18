@@ -1,20 +1,26 @@
 import React from "react";
+import {
+  CryptoDetails,
+  CryptoDetailsHeader
+} from "../coin-card-detail.module.css";
 
-import dangerouslyCreateInnerHTML from "../../utils/dangerouslyCreateInnerHTML";
-
-const CoinCardDetail = ({ data }) =>
-  data.every(e => !e.startsWith("undefined")) && (
-    <div className="text-center">
-      {data.map((e, idx) => (
-        <span
-          key={e}
-          className={
-            !idx ? "crypto-details crypto-details-header" : "crypto-details"
-          }
-          dangerouslySetInnerHTML={dangerouslyCreateInnerHTML(e)}
-        ></span>
-      ))}
-    </div>
-  );
+const CoinCardDetail = ({ header, data, symbols }) => (
+  <div className="text-center">
+    {data && (
+      <>
+        <span className={CryptoDetailsHeader}>{header}</span>
+        <span className={CryptoDetails}>
+          {data.usd && ` ${data.usd} ${symbols[0]}`}
+        </span>
+        <span className={CryptoDetails}>
+          {data.eur && ` ${data.eur} ${symbols[1]}`}
+        </span>
+        <span className={CryptoDetails}>
+          {data.gbp && ` ${data.gbp} ${symbols[2]}`}
+        </span>
+      </>
+    )}
+  </div>
+);
 
 export default CoinCardDetail;

@@ -2,6 +2,7 @@ import CoinGecko from "coingecko-api";
 
 const PAGINATION_LENGTH = 8;
 const COINS_PER_PAGE = 15;
+const SECONDS_30 = 30000;
 const GECKO_ORDER = [
   { value: CoinGecko.ORDER.GECKO_DESC, label: "Results by scoring system ↓" },
   { value: CoinGecko.ORDER.GECKO_ASC, label: "Results by scoring system ↑" },
@@ -15,4 +16,4 @@ const GECKO_ORDER = [
   { value: CoinGecko.ORDER.HOUR_24_ASC, label: "Results by 24 hour change ↑" }
 ];
 
-export { PAGINATION_LENGTH, COINS_PER_PAGE, GECKO_ORDER };
+export { PAGINATION_LENGTH, COINS_PER_PAGE, GECKO_ORDER, SECONDS_30 };

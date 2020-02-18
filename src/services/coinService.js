@@ -9,8 +9,8 @@ const listCoins = async (page, order) =>
 
 const getAllCoinsTitle = () => CoinGeckoClient.coins.list();
 
-const getCoinDetails = name => CoinGeckoClient.coins.fetch(name);
+const fetchCoinDetails = name => CoinGeckoClient.coins.fetch(name);
 
 const getMarketChart = id => CoinGeckoClient.coins.fetchMarketChart(id);
 
-export { listCoins, getAllCoinsTitle, getCoinDetails, getMarketChart };
+export { listCoins, getAllCoinsTitle, fetchCoinDetails, getMarketChart };

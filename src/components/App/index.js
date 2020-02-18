@@ -7,17 +7,17 @@ import { connect } from "react-redux";
 
 import { setListOfCoinsTitle } from "../../store/coins/actions";
 
-const App = ({ setListOfCoinsTitle }) => {
+const App = ({ setListOfCoinsTitleAction }) => {
   useEffect(() => {
-    setListOfCoinsTitle();
-  }, []);
+    setListOfCoinsTitleAction();
+  }, [setListOfCoinsTitleAction]);
 
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={() => <Redirect to="/1" />} />
         <Route path="/coins/:coinId" component={CoinPage} />
         <Route path="/:num" component={MainPage} />
+        <Redirect to="/1" />
       </Switch>
     </BrowserRouter>
   );
@@ -25,4 +25,6 @@ const App = ({ setListOfCoinsTitle }) => {
 
 const mapStateToProps = state => ({});
 
-export default connect(mapStateToProps, { setListOfCoinsTitle })(App);
+export default connect(mapStateToProps, {
+  setListOfCoinsTitleAction: setListOfCoinsTitle
+})(App);

@@ -1,0 +1,11 @@
+.CryptoDetails {
+  display: inline-block;
+  width: 25%;
+}
+.CryptoDetailsHeader {
+  display: inline-block;
+  width: 25%;
+  color: darkgray;
+  text-align: left;
+  font-weight: bold;
+}
