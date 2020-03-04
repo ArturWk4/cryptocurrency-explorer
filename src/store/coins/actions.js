@@ -4,7 +4,7 @@ import {
   SET_ORDER
 } from "./actionTypes";
 
-import { listCoins, getAllCoinsTitle } from "../../services/coinService";
+import { listCoins, fetchAllCoinsTitle } from "../../services/coinService";
 
 const setCoinsList = page => async (dispatch, getState) => {
   const response = await listCoins(page, getState().coins.order);
@@ -12,7 +12,7 @@ const setCoinsList = page => async (dispatch, getState) => {
 };
 
 const setListOfCoinsTitle = () => async dispatch => {
-  const response = await getAllCoinsTitle();
+  const response = await fetchAllCoinsTitle();
   dispatch({ type: FETCH_LIST_OF_COINS_TITLE, payload: response.data });
 };
 

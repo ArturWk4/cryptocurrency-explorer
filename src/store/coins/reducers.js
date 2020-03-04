@@ -1,3 +1,4 @@
+import { createReducer } from "@reduxjs/toolkit";
 import {
   FETCH_COINS,
   FETCH_LIST_OF_COINS_TITLE,
@@ -11,26 +12,13 @@ const initialState = {
   order: GECKO_ORDER[0].value
 };
 
-const coinsReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case FETCH_COINS:
-      return {
-        ...state,
-        coinsList: action.payload
-      };
-    case FETCH_LIST_OF_COINS_TITLE:
-      return {
-        ...state,
-        listOfCoinsTitle: action.payload
-      };
-    case SET_ORDER:
-      return {
-        ...state,
-        order: action.payload
-      };
-    default:
-      return state;
-  }
-};
+const coinsReducer = createReducer(initialState, {
+  [FETCH_COINS]: (state, action) => ({ ...state, coinsList: action.payload }),
+  [FETCH_LIST_OF_COINS_TITLE]: (state, action) => ({
+    ...state,
+    listOfCoinsTitle: action.payload
+  }),
+  [SET_ORDER]: (state, action) => ({ ...state, order: action.payload })
+});
 
-export { coinsReducer };
+export default coinsReducer;
