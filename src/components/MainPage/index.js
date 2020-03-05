@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { MDBCol, MDBContainer, MDBRow } from "mdbreact";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Redirect, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import Pagination from "../Pagination";
@@ -12,15 +12,15 @@ import { setCoinsList } from "../../store/coins/actions";
 import Spinner from "../Spinner";
 import { Page } from "../page.module.css";
 
-const MainPage = props => {
-  const {
-    listOfCoinsTitle,
-    match,
-    setCoinsListAction,
-    order,
-    coinsList
-  } = props;
+const MainPage = ({ match }) => {
   const num = +match.params.num;
+
+  const dispatch = useDispatch();
+  const { listOfCoinsTitle, coinsList, order } = useSelector(
+    ({ coins }) => coins
+  );
+
+  const setCoinsListAction = page => dispatch(setCoinsList(page));
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -29,19 +29,11 @@ const MainPage = props => {
     setCoinsListAction(num).then(() => setIsLoading(false));
     const interval = setInterval(setCoinsListAction, SECONDS_30, num);
     return () => clearInterval(interval);
-  }, [setCoinsListAction, num, order]);
+  }, [num, order, dispatch]);
 
   const paginationLength = getPaginationLength(listOfCoinsTitle.length);
-  const memoizedPagination = useMemo(
-    () => <Pagination num={num} paginationLength={paginationLength} />,
-    [num, paginationLength]
-  );
 
-  if (
-    !num ||
-    (listOfCoinsTitle.length &&
-      num > getPaginationLength(listOfCoinsTitle.length))
-  ) {
+  if (!num || (listOfCoinsTitle.length && num > paginationLength)) {
     return <Redirect to="/1" />;
   }
 
@@ -55,7 +47,7 @@ const MainPage = props => {
           {!isLoading ? <CoinsList coinsList={coinsList} /> : <Spinner />}
         </MDBCol>
         <MDBCol className={Page} xs="12" md="11" lg="10">
-          {memoizedPagination}
+          <Pagination num={num} paginationLength={paginationLength} />
         </MDBCol>
       </MDBRow>
     </MDBContainer>
@@ -63,27 +55,9 @@ const MainPage = props => {
 };
 
 MainPage.propTypes = {
-  listOfCoinsTitle: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      symbol: PropTypes.string,
-      name: PropTypes.string.isRequired
-    })
-  ).isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({ num: PropTypes.string.isRequired })
-  }).isRequired,
-  setCoinsListAction: PropTypes.func.isRequired,
-  order: PropTypes.string.isRequired,
-  coinsList: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired
-    })
-  ).isRequired
+  }).isRequired
 };
 
-const mapStateToProps = state => state.coins;
-
-export default withRouter(
-  connect(mapStateToProps, { setCoinsListAction: setCoinsList })(MainPage)
-);
+export default withRouter(MainPage);

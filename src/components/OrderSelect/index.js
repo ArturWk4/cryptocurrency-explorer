@@ -1,32 +1,30 @@
-import React from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import React, { useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { GECKO_ORDER } from "../../utils/constants";
 import { setOrder } from "../../store/coins/actions";
 
-const OrderSelect = ({ selectedValue, setOrderAction }) => (
-  <div className="mb-3">
-    <select
-      defaultValue={selectedValue}
-      onChange={({ target }) => setOrderAction(target.value)}
-      className="browser-default custom-select"
-    >
-      {GECKO_ORDER.map(orderItem => (
-        <option key={orderItem.value} value={orderItem.value}>
-          {orderItem.label}
-        </option>
-      ))}
-    </select>
-  </div>
-);
-
-OrderSelect.propTypes = {
-  selectedValue: PropTypes.string.isRequired,
-  setOrderAction: PropTypes.func.isRequired
+const OrderSelect = () => {
+  const dispatch = useDispatch();
+  const selectedValue = useSelector(({ coins }) => coins.order);
+  const changeOrder = useCallback(
+    ({ target }) => dispatch(setOrder(target.value)),
+    [dispatch]
+  );
+  return (
+    <div className="mb-3">
+      <select
+        defaultValue={selectedValue}
+        onChange={changeOrder}
+        className="browser-default custom-select"
+      >
+        {GECKO_ORDER.map(orderItem => (
+          <option key={orderItem.value} value={orderItem.value}>
+            {orderItem.label}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
 };
 
-const mapStateToProps = ({ coins }) => ({ selectedValue: coins.order });
-
-export default connect(mapStateToProps, { setOrderAction: setOrder })(
-  OrderSelect
-);
+export default OrderSelect;

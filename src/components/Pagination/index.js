@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { MDBPageItem, MDBPagination } from "mdbreact";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -43,4 +43,4 @@ Pagination.propTypes = {
   paginationLength: PropTypes.number.isRequired
 };
 
-export default Pagination;
+export default memo(Pagination);

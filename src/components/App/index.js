@@ -1,16 +1,17 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import PropTypes from "prop-types";
 import MainPage from "../MainPage";
 import CoinPage from "../CoinPage";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { setListOfCoinsTitle } from "../../store/coins/actions";
 
-const App = ({ setListOfCoinsTitleAction }) => {
+const App = () => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    setListOfCoinsTitleAction();
-  }, [setListOfCoinsTitleAction]);
+    dispatch(setListOfCoinsTitle());
+  }, [dispatch]);
 
   return (
     <BrowserRouter>
@@ -23,10 +24,4 @@ const App = ({ setListOfCoinsTitleAction }) => {
   );
 };
 
-App.propTypes = {
-  setListOfCoinsTitleAction: PropTypes.func.isRequired
-};
-
-export default connect(() => ({}), {
-  setListOfCoinsTitleAction: setListOfCoinsTitle
-})(App);
+export default App;
