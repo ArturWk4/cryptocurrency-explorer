@@ -16,4 +16,6 @@ const GECKO_ORDER = [
   { value: CoinGecko.ORDER.HOUR_24_ASC, label: "Results by 24 hour change ↑" }
 ];
 
-export { PAGINATION_LENGTH, COINS_PER_PAGE, GECKO_ORDER, SECONDS_30 };
+export {
+  PAGINATION_LENGTH, COINS_PER_PAGE, GECKO_ORDER, SECONDS_30
+};

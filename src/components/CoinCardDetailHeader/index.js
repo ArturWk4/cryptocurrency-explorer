@@ -8,13 +8,13 @@ const CoinCardDetailHeader = () => (
   <div className="text-center">
     <span className={CryptoDetailsHeader}>Currency</span>
     <span className={CryptoDetails}>
-      <i className="fas fa-dollar-sign"></i>
+      <i className="fas fa-dollar-sign" />
     </span>
     <span className={CryptoDetails}>
-      <i className="fas fa-euro-sign"></i>
+      <i className="fas fa-euro-sign" />
     </span>
     <span className={CryptoDetails}>
-      <i className="fas fa-pound-sign"></i>
+      <i className="fas fa-pound-sign" />
     </span>
   </div>
 );

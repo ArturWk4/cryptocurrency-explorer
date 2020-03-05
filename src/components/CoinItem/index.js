@@ -10,22 +10,22 @@ const CoinItem = ({ data }) => (
     <Link to={`/coins/${data.id}`}>{data.name}</Link>
     <CoinDetail
       prefix={null}
-      postfix={"$"}
+      postfix="$"
       data={data.market_data.current_price.usd}
     />
     <CoinDetail
-      prefix={"24h: "}
-      postfix={"%"}
+      prefix="24h: "
+      postfix="%"
       data={data.market_data.price_change_percentage_24h}
     />
     <CoinDetail
-      prefix={"7d: "}
-      postfix={"%"}
+      prefix="7d: "
+      postfix="%"
       data={data.market_data.price_change_percentage_7d}
     />
     <CoinDetail
-      prefix={"30d: "}
-      postfix={"%"}
+      prefix="30d: "
+      postfix="%"
       data={data.market_data.price_change_percentage_30d}
     />
   </MDBListGroupItem>

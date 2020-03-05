@@ -17,15 +17,14 @@ const Pagination = props => {
         </MDBPageItem>
       )}
       {getPaginationNumbers(num).map(
-        paginationNum =>
-          paginationNum > 0 &&
-          paginationNum <= paginationLength && (
+        paginationNum => paginationNum > 0
+          && paginationNum <= paginationLength && (
             <MDBPageItem active={num === paginationNum} key={paginationNum}>
               <Link className="page-link" to={`/${paginationNum}`}>
                 {paginationNum}
               </Link>
             </MDBPageItem>
-          )
+        )
       )}
       {num < paginationLength && (
         <MDBPageItem>

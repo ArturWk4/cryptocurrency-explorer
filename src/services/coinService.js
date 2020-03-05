@@ -4,8 +4,7 @@ import { COINS_PER_PAGE as per_page } from "../utils/constants";
 
 const CoinGeckoClient = new CoinGecko();
 
-const listCoins = async (page, order) =>
-  CoinGeckoClient.coins.all({ per_page, page, order });
+const listCoins = async (page, order) => CoinGeckoClient.coins.all({ per_page, page, order });
 
 const fetchAllCoinsTitle = () => CoinGeckoClient.coins.list();
 
@@ -13,4 +12,6 @@ const fetchCoinDetails = name => CoinGeckoClient.coins.fetch(name);
 
 const getMarketChart = id => CoinGeckoClient.coins.fetchMarketChart(id);
 
-export { listCoins, fetchAllCoinsTitle, fetchCoinDetails, getMarketChart };
+export {
+  listCoins, fetchAllCoinsTitle, fetchCoinDetails, getMarketChart
+};

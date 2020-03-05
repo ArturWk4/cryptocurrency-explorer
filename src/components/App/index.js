@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter, Redirect, Route, Switch
+} from "react-router-dom";
+import { useDispatch } from "react-redux";
 import MainPage from "../MainPage";
 import CoinPage from "../CoinPage";
-import { useDispatch } from "react-redux";
 
 import { setListOfCoinsTitle } from "../../store/coins/actions";
 
